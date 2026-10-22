@@ -30,4 +30,16 @@ def calculo_costo_min_perdidas(
     if nodos == 0:
         return 0.0
     
- 
+    try: 
+        costo = np.zeros(nodos + 1)
+        costo [1] = perdidas_nodo[0]
+
+        for nodo in range(2, nodos + 1):
+            perdida_actual = perdidas_nodo[nodo - 1]
+            costo_consecutivo = costo[nodo - 1] + perdida_actual
+            costo_salto = costo[nodo - 2] + FACTOR_SALTO * perdida_actual
+            costo[nodo] = min(costo_consecutivo, costo_salto)
+
+    except (TypeError, ValueError) as error:
+        print(f"[ERROR] Datos corruptos en las mediciones: {error}")
+        return None
