@@ -43,3 +43,5 @@ def calculo_costo_min_perdidas(
     except (TypeError, ValueError) as error:
         print(f"[ERROR] Datos corruptos en las mediciones: {error}")
         return None
+    
+    return float(costo[nodos])
